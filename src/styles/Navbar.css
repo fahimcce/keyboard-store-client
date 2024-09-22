@@ -1,0 +1,5 @@
+@media (min-width: 768px) {
+  .three-dots {
+    display: none; /* Hide the three dots button on larger screens */
+  }
+}

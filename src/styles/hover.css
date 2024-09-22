@@ -1,0 +1,20 @@
+a:hover {
+  transform: scale(1.1);
+  color: #1e90ff; /* Change color on hover */
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer div {
+  flex: 1 1 30%; /* Default to 3 columns on larger screens */
+  min-width: 200px; /* Ensure a minimum width */
+}
+
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column; /* Stack columns on smaller screens */
+  }
+}

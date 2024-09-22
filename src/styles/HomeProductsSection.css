@@ -1,0 +1,102 @@
+.product-card {
+  flex: 0 0 calc(33.33% - 20px);
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden; /* Hide overflow to contain the zoom effect */
+}
+
+/* Styles for other elements */
+.section {
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.products-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Loader style */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Center vertically in the viewport */
+}
+
+/* Button styles */
+.button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #1890ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.add-to-cart-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #ff4d4f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.see-more-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #1890ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+.product-card {
+  flex: 1 1 100%; /* Full width on mobile */
+  max-width: 300px; /* Optional max width */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: left;
+  background: #fff;
+}
+
+@media (min-width: 768px) {
+  .product-card {
+    flex: 1 1 calc(33.33% - 20px); /* Three cards in a row on larger screens */
+  }
+}
+
+.productsContainerStyle {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product-card:hover img {
+  transform: scale(1.1); /* Zoom in on hover */
+}
+
+/* Other button styles can be added here */

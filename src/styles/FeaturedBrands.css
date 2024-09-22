@@ -1,0 +1,11 @@
+@media (min-width: 768px) {
+  .brand-card {
+    flex: 0 0 calc(33.33% - 20px); /* Three cards in a row on larger screens */
+  }
+}
+
+@media (min-width: 992px) {
+  .brand-card {
+    flex: 0 0 calc(16.66% - 20px); /* Four cards in a row on even larger screens */
+  }
+}

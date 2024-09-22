@@ -1,0 +1,38 @@
+/* Responsive styles for mobile */
+
+/* Center-align header and make it stack on smaller screens */
+.header-row {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* For smaller screens, center-align the button and title */
+@media only screen and (max-width: 768px) {
+  .mobile-header {
+    font-size: 1.2rem;
+  }
+
+  .add-product-button {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* Reduce button size for smaller screens */
+  .mobile-button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  /* Ensure table scrolls horizontally on mobile */
+  .responsive-table {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  /* Make modal responsive and take full width on smaller screens */
+  .responsive-modal .ant-modal-content {
+    width: 90% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+  }
+}

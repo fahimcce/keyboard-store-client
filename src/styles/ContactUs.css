@@ -1,0 +1,144 @@
+.contact-page {
+  text-align: center;
+  padding: 50px;
+  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.contact-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.contact-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.contact-info,
+.contact-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  width: 40%;
+  transition: transform 0.3s ease;
+}
+
+.contact-info:hover,
+.contact-form:hover {
+  transform: translateY(-5px);
+}
+
+.contact-info h2,
+.contact-form h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.social-media {
+  margin-top: 20px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icon {
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  transition: background 0.3s ease;
+}
+
+.social-icon.facebook {
+  background: #3b5998;
+}
+.social-icon.twitter {
+  background: #00acee;
+}
+.social-icon.instagram {
+  background: #e4405f;
+}
+
+.social-icon:hover {
+  opacity: 0.8;
+}
+
+.submit-button {
+  background-color: #84fab0;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #68d69a;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-info,
+  .contact-form {
+    width: 80%;
+  }
+
+  .contact-title {
+    font-size: 2.5rem;
+  }
+
+  .contact-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-title {
+    font-size: 2rem;
+  }
+
+  .contact-subtitle {
+    font-size: 1rem;
+  }
+
+  .contact-info,
+  .contact-form {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .contact-info h2,
+  .contact-form h2 {
+    font-size: 1.8rem;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

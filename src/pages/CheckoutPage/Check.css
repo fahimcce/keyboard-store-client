@@ -1,0 +1,12 @@
+.table-header {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-weight: bold;
+}
+
+.footer {
+  padding: 10px;
+  font-weight: bold;
+  text-align: right;
+}
