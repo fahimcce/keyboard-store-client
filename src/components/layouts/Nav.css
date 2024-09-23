@@ -14,8 +14,6 @@
 .navbar-toggler {
   color: white; /* Change text/icon color */
   border-color: white; /* Change the border color */
-
-  z-index: 9999;
 }
 
 .navbar-toggler-icon {
