@@ -49,7 +49,19 @@ const Nav = () => {
         className="navbar navbar-expand-lg fixed-top "
         style={{ backgroundColor: "#00152A" }}
       >
-        <div className="container-fluid ">
+        <div style={{ display: "flex" }}>
+          {/* Navbar Toggle Button */}
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
           {/* Logo Section */}
           <div
             style={{
@@ -65,19 +77,6 @@ const Nav = () => {
               />
             </NavLink>
           </div>
-
-          {/* Navbar Toggle Button */}
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarScroll"
-            aria-controls="navbarScroll"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
 
           {/* Navbar Links */}
           <div className="collapse navbar-collapse" id="navbarScroll">
