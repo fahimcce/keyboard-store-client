@@ -62,7 +62,7 @@ const Hero = () => {
             backgroundImage: `url(${slider2})`,
           }}
         >
-          <h1 style={{ fontSize: "4rem", color: "#333333" }}>
+          <h1 style={{ fontSize: "4rem" }}>
             Unleash Your Potential with Every Keystroke
           </h1>
           <button style={buttonStyle} onClick={handleExploreClick}>

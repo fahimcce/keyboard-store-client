@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate } from "react-router-dom";
 import { useGetAllProductsQuery } from "../../redux/features/productsApi/productApi";
-import { Rate, Spin } from "antd"; // Importing Ant Design's Spin component for the loader
+import { Button, notification, Rate, Spin } from "antd";
 import { useDispatch } from "react-redux";
 
 import "../../styles/HomeProductsSection.css";
 import { addToCart } from "../../redux/features/cartSlice";
+import { useState } from "react";
 
 const HomeProductsSection = () => {
+  const [disabledButtons, setDisabledButtons] = useState<{
+    [key: string]: boolean;
+  }>({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { data, isLoading, error } = useGetAllProductsQuery(undefined);
@@ -19,14 +23,28 @@ const HomeProductsSection = () => {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleAddToCart = (product: any) => {
+  const handleAddToCart = (product: { _id: any; Title: any; Price: any }) => {
     const itemToAdd = {
       _id: product._id,
       title: product.Title,
       price: product.Price,
       quantity: 1,
     };
+
+    // Dispatch action to add product to cart
     dispatch(addToCart(itemToAdd));
+
+    // Show notification
+    notification.success({
+      message: "Product Added to Cart",
+      description: "Go to cart to place your order.",
+    });
+
+    // Disable the "Add to Cart" button for this product
+    setDisabledButtons((prev) => ({
+      ...prev,
+      [product._id]: true,
+    }));
   };
 
   if (isLoading) {
@@ -38,7 +56,22 @@ const HomeProductsSection = () => {
   }
 
   if (error) {
-    return <div>Error loading products.</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          className="alert alert-danger"
+          style={{ width: "50%", textAlign: "center" }}
+          role="alert"
+        >
+          Failed to reload Data ! May be Server is Down!! Please Wait !!
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -47,7 +80,11 @@ const HomeProductsSection = () => {
       <div className="products-container">
         {products.map((product: any) => (
           <div key={product._id} className="product-card">
-            <img src={product.Image} alt={product.Title} />
+            <img
+              src={product.Image}
+              style={{ height: "200px", width: "100%" }}
+              alt={product.Title}
+            />
             <h3>{product.Title}</h3>
             <p>
               <strong>Brand:</strong> {product.Brand}
@@ -59,18 +96,19 @@ const HomeProductsSection = () => {
               <strong>Rating:</strong>
               <Rate disabled defaultValue={product.Rating} />
             </p>
-            <button
+            <Button
               className="button"
               onClick={() => navigate(`/products/${product._id}`)}
             >
               See Details
-            </button>
-            <button
+            </Button>
+            <Button
               className="add-to-cart-button"
               onClick={() => handleAddToCart(product)}
+              disabled={!!disabledButtons[String(product._id)]} // Convert _id to string safely
             >
               Add to Cart
-            </button>
+            </Button>
           </div>
         ))}
       </div>

@@ -11,6 +11,7 @@ import {
   Row,
   Col,
   Layout,
+  Spin,
 } from "antd";
 import {
   useDeleteProductMutation,
@@ -18,6 +19,7 @@ import {
   useUpdateProductMutation,
 } from "../../redux/features/productsApi/productApi";
 import AddProductForm from "../../components/ui/AddProductForm";
+import Swal from "sweetalert2";
 
 const { Content } = Layout;
 
@@ -27,6 +29,8 @@ interface Product {
   Brand: string;
   Price: number;
   Image: string;
+  AvailableQuantity: number;
+  Description: string;
 }
 
 const ProductManagement = () => {
@@ -36,6 +40,7 @@ const ProductManagement = () => {
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState<boolean>(false); // Loader state
 
   const handleUpdateProduct = (product: Product) => {
     setCurrentProduct(product);
@@ -49,8 +54,17 @@ const ProductManagement = () => {
 
   const onFinish = async (values: Product) => {
     if (currentProduct) {
+      setLoading(true); // Start loading
       await updateProduct({ id: currentProduct._id, ...values });
+      setLoading(false); // End loading
       setIsModalVisible(false);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Product Updated SuccessFully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
@@ -59,7 +73,13 @@ const ProductManagement = () => {
     notification.success({ message: "Product deleted successfully!" });
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <div style={loaderStyle}>
+        <Spin tip="Loading..." size="large" />
+      </div>
+    );
+  }
 
   const columns = [
     {
@@ -78,6 +98,11 @@ const ProductManagement = () => {
       key: "Price",
     },
     {
+      title: "Quantity",
+      dataIndex: "AvailableQuantity",
+      key: "AvailableQuantity",
+    },
+    {
       title: "Image",
       dataIndex: "Image",
       key: "Image",
@@ -87,7 +112,6 @@ const ProductManagement = () => {
     },
     {
       title: "Actions",
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       render: (_: unknown, record: Product) => (
         <>
           <Button
@@ -171,6 +195,8 @@ const ProductManagement = () => {
                   Price: currentProduct.Price,
                   Brand: currentProduct.Brand,
                   Image: currentProduct.Image,
+                  AvailableQuantity: currentProduct.AvailableQuantity,
+                  Description: currentProduct.Description,
                 }}
               >
                 <Form.Item
@@ -195,10 +221,26 @@ const ProductManagement = () => {
                   <Input />
                 </Form.Item>
                 <Form.Item
+                  label="Description"
+                  name="Description"
+                  rules={[{ required: true, message: "Details about product" }]}
+                >
+                  <Input.TextArea rows={3} />
+                </Form.Item>
+                <Form.Item
                   label="Price"
                   name="Price"
                   rules={[
                     { required: true, message: "Please enter the price" },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label="AvailableQuantity"
+                  name="AvailableQuantity"
+                  rules={[
+                    { required: true, message: "Please enter the Quantity" },
                   ]}
                 >
                   <Input />
@@ -213,8 +255,13 @@ const ProductManagement = () => {
                   <Input />
                 </Form.Item>
                 <Form.Item>
-                  <Button type="primary" htmlType="submit" block>
-                    Update Product
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    block
+                    loading={loading}
+                  >
+                    {loading ? "Updating..." : "Update Product"}
                   </Button>
                 </Form.Item>
               </Form>
@@ -224,6 +271,13 @@ const ProductManagement = () => {
       </Content>
     </Layout>
   );
+};
+
+const loaderStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "80vh", // Center vertically in the viewport
 };
 
 export default ProductManagement;

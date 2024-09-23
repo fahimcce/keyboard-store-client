@@ -1,7 +1,7 @@
 import CustomerReviews from "./CustomerReviews";
 import CustomizableOptions from "./CustomizableOptions";
 import FeaturedBrands from "./FeaturedBrands";
-import Footers from "./Footers";
+
 import Hero from "./Hero";
 import Products from "./Products";
 import Services from "./Services";
@@ -18,7 +18,6 @@ const Home = () => {
       <CustomerReviews />
       <WhyChoose />
       <CustomizableOptions />
-      <Footers />
     </div>
   );
 };

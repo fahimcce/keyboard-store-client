@@ -7,10 +7,24 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 import "../../styles/hover.css";
+import { useNavigate } from "react-router-dom";
 
 const Footers = () => {
+  const navigate = useNavigate();
+  const goToAboutPage = () => {
+    navigate("/about");
+    window.scrollTo(0, 0);
+  };
+  const goToProductPage = () => {
+    navigate("/products");
+    window.scrollTo(0, 0);
+  };
+  const goToHomePage = () => {
+    navigate("/");
+    window.scrollTo(0, 0);
+  };
   return (
-    <>
+    <div>
       <footer
         style={{
           padding: "20px",
@@ -26,14 +40,14 @@ const Footers = () => {
         <div style={{ flex: "1", textAlign: "center", padding: "10px" }}>
           <h3>Contact Us</h3>
           <p style={{ margin: "10px 0" }}>
-            <FaEnvelope style={{ marginRight: "5px" }} /> support@example.com
+            <FaEnvelope style={{ marginRight: "5px" }} /> keycaps@kingdom.com
           </p>
           <p style={{ margin: "10px 0" }}>
             <FaPhone style={{ marginRight: "5px" }} /> +1 234 567 890
           </p>
           <p style={{ margin: "10px 0" }}>
-            <FaMapMarkerAlt style={{ marginRight: "5px" }} /> 123 Main St, City,
-            Country
+            <FaMapMarkerAlt style={{ marginRight: "5px" }} /> 123 ,O R Nizam
+            Road,Panslaish,Chittagong,Bangladesh
           </p>
         </div>
         <div style={{ flex: "1", textAlign: "center", padding: "10px" }}>
@@ -85,10 +99,11 @@ const Footers = () => {
           </p>
         </div>
         <div style={{ flex: "1", textAlign: "center", padding: "10px" }}>
-          <h3>More Links</h3>
+          <h3>Important Links</h3>
           <p style={{ margin: "10px 0" }}>
             <a
-              href="/about"
+              onClick={goToAboutPage}
+              href="#"
               style={{
                 color: "#fff",
                 textDecoration: "none",
@@ -100,7 +115,8 @@ const Footers = () => {
           </p>
           <p style={{ margin: "10px 0" }}>
             <a
-              href="/privacy"
+              onClick={goToAboutPage}
+              href="#"
               style={{
                 color: "#fff",
                 textDecoration: "none",
@@ -112,7 +128,8 @@ const Footers = () => {
           </p>
           <p style={{ margin: "10px 0" }}>
             <a
-              href="/terms"
+              onClick={goToAboutPage}
+              href="#"
               style={{
                 color: "#fff",
                 textDecoration: "none",
@@ -124,41 +141,44 @@ const Footers = () => {
           </p>
         </div>
         <div style={{ flex: "1", textAlign: "center", padding: "10px" }}>
-          <h3>More Links</h3>
+          <h3>Explore out shop</h3>
           <p style={{ margin: "10px 0" }}>
             <a
-              href="/about"
+              onClick={goToProductPage}
+              href="#"
               style={{
                 color: "#fff",
                 textDecoration: "none",
                 transition: "transform 0.2s",
               }}
             >
-              About Us
+              Products
             </a>
           </p>
           <p style={{ margin: "10px 0" }}>
             <a
-              href="/privacy"
+              onClick={goToHomePage}
+              href="#"
               style={{
                 color: "#fff",
                 textDecoration: "none",
                 transition: "transform 0.2s",
               }}
             >
-              Privacy Policy
+              Home
             </a>
           </p>
           <p style={{ margin: "10px 0" }}>
             <a
-              href="/terms"
+              onClick={goToProductPage}
+              href="#"
               style={{
                 color: "#fff",
                 textDecoration: "none",
                 transition: "transform 0.2s",
               }}
             >
-              Terms of Service
+              Explore more..
             </a>
           </p>
         </div>
@@ -169,7 +189,7 @@ const Footers = () => {
           reserved.
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

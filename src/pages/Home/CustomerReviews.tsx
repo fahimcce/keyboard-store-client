@@ -77,9 +77,10 @@ const CustomerReviews = () => {
     <section
       style={{
         padding: "20px",
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#FFFFFF",
         textAlign: "center",
         marginTop: "40px",
+
         height: "auto", // Changed to auto for better responsiveness
       }}
     >
@@ -94,7 +95,6 @@ const CustomerReviews = () => {
             key={review.id}
             style={{
               padding: "20px",
-              background: "#fff",
               borderRadius: "8px",
               boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
             }}

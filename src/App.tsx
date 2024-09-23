@@ -1,8 +1,10 @@
 import { Outlet } from "react-router-dom";
-import MainLayout from "./components/layouts/MainLayout";
+
 import { useEffect } from "react";
 import { useAppSelector } from "./redux/hook";
 import Swal from "sweetalert2";
+import Nav from "./components/layouts/Nav";
+import Footers from "./pages/Home/Footers";
 
 function App() {
   const cartItems = useAppSelector((state) => state.cart.items);
@@ -47,8 +49,11 @@ function App() {
 
   return (
     <>
-      <MainLayout />
-      <Outlet />
+      <Nav />
+      <div style={{ marginTop: "58px" }}>
+        <Outlet />
+      </div>
+      <Footers></Footers>
     </>
   );
 }

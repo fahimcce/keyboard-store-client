@@ -17,6 +17,7 @@ import {
   Rate,
   Spin,
   Pagination,
+  notification,
 } from "antd";
 import { useGetAllProductsQuery } from "../../redux/features/productsApi/productApi";
 
@@ -32,6 +33,9 @@ const Products = () => {
   const products = data?.data?.result || [];
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [disabledButtons, setDisabledButtons] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   // State for search, filter, sort, and pagination
   const [searchTerm, setSearchTerm] = useState("");
@@ -70,12 +74,27 @@ const Products = () => {
       price: product.Price,
       quantity: 1,
     };
+
+    // Dispatch action to add product to cart
     dispatch(addToCart(itemToAdd));
+
+    // Show notification
+    notification.success({
+      message: "Product Added to Cart",
+      description: "Go to cart to place your order.",
+    });
+
+    // Disable the "Add to Cart" button for this product
+    setDisabledButtons((prev) => ({
+      ...prev,
+      [product._id]: true,
+    }));
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const goToProductDetails = (id: any) => {
     navigate(`/products/${id}`);
+    window.scrollTo(0, 0);
   };
 
   // Filter and sort logic
@@ -119,7 +138,22 @@ const Products = () => {
   }
 
   if (error) {
-    return <p>Error loading products</p>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          className="alert alert-danger"
+          style={{ width: "50%", textAlign: "center" }}
+          role="alert"
+        >
+          Failed to reload Data ! May be Server is Down!! Please Wait !!
+        </div>
+      </div>
+    );
   }
 
   if (products.length === 0) {
@@ -127,7 +161,7 @@ const Products = () => {
   }
 
   return (
-    <div style={{ margin: "0 20px", marginBottom: "20px" }}>
+    <div style={{ margin: "0 20px" }}>
       {/* Search Bar */}
       <Row justify="center" style={{ marginBottom: "20px", marginTop: "20px" }}>
         <Col xs={24} sm={12} lg={8}>
@@ -224,7 +258,7 @@ const Products = () => {
                 cover={
                   <img
                     src={product.Image}
-                    style={{ height: "200px", objectFit: "cover" }}
+                    style={{ height: "250px", width: "100%" }}
                   />
                 }
               >
@@ -250,9 +284,11 @@ const Products = () => {
                   type="primary"
                   style={{ marginTop: "10px" }}
                   onClick={() => handleAddToCart(product)}
+                  disabled={!!disabledButtons[String(product._id)]} // Convert _id to string safely
                 >
                   Add to Cart
                 </Button>
+
                 <Button
                   type="default"
                   style={{ marginTop: "10px", marginLeft: "10px" }}
@@ -285,7 +321,7 @@ const loaderStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  height: "80vh", // Center vertically in the viewport
+  height: "80vh",
 };
 
 export default Products;

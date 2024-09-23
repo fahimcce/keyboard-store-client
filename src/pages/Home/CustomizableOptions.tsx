@@ -78,7 +78,7 @@ const CustomizableOptions = () => {
               style={{
                 width: "100%",
                 height: "200px", // Increased height
-                objectFit: "cover",
+
                 borderRadius: "8px",
                 marginBottom: "10px",
               }}

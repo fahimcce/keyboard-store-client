@@ -4,8 +4,9 @@ import ceo from "../../assets/images/yonos.jpg";
 import cfo from "../../assets/images/riki.jpg";
 import cmo from "../../assets/images/sabit.jpg";
 import coo from "../../assets/images/mamun.jpg";
-import del from "../../assets/images/delwar.jpg";
+import del from "../../assets/images/dell.jpg";
 import tan from "../../assets/images/tanvir.jpg";
+import say from "../../assets/images/saydol.jpg";
 
 const AboutUs = () => {
   return (
@@ -81,6 +82,16 @@ const AboutUs = () => {
           <p className="member-bio">
             Tanvir oversees operations and ensures efficiency across the
             organization, bringing a wealth of operational expertise.
+          </p>
+        </div>
+        <div className="team-member">
+          <img src={say} alt="Team Member 4" className="member-image" />
+          <h3 className="member-name">Saydol</h3>
+          <p className="member-role">Head of Human resourse</p>
+          <p className="member-bio">
+            Saydol leads the human resources department, ensuring the well-being
+            and development of all team members while fostering a productive
+            work environment.
           </p>
         </div>
 
